@@ -8,6 +8,7 @@
 
 /* MoonBit paths are UTF-8 regardless of the Windows ANSI code page. */
 static wchar_t *bit_windows_path(const char *path) {
+  if (path[0] == '\0') return NULL;
   int length = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, path, -1, NULL, 0);
   if (length == 0) return NULL;
   wchar_t *wide = (wchar_t *)malloc((size_t)length * sizeof(wchar_t));
